@@ -36,6 +36,10 @@ public class Book {
 
     private boolean visibility;
 
+    @NotNull
+    @Column(nullable = false)
+    private Double price;
+
     // Getters y setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -53,4 +57,6 @@ public class Book {
     public void setRating(Integer rating) { this.rating = rating; }
     public boolean isVisibility() { return visibility; }
     public void setVisibility(boolean visibility) { this.visibility = visibility; }
+    public Double getPrice() { return price; }
+    public void setPrice(Double price) { this.price = price; }
 } 

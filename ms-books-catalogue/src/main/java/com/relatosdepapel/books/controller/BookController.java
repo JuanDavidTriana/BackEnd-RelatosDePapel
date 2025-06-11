@@ -46,6 +46,13 @@ public class BookController {
         return ResponseEntity.ok(bookRepository.findAll(spec, pageable));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+        return bookRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody Book book) {
         if (!bookRepository.existsById(id)) return ResponseEntity.notFound().build();

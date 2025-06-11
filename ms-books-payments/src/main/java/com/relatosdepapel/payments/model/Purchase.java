@@ -17,8 +17,7 @@ public class Purchase {
     @Column(name = "book_id", nullable = false)
     private Long bookId;
     
-    @NotNull
-    @Column(name = "purchase_date", nullable = false)
+    @Column(name = "purchase_date")
     private LocalDateTime purchaseDate;
     
     @NotNull
