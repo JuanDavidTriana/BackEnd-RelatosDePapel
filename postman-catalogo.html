@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peticiones Postman - Catálogo de Libros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .endpoint {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .get { background-color: #61affe; }
+        .post { background-color: #49cc90; }
+        .put { background-color: #fca130; }
+        .delete { background-color: #f93e3e; }
+        .url {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .request-body {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .response {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .description {
+            margin: 10px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Peticiones Postman - Microservicio de Catálogo de Libros</h1>
+        
+        <div class="endpoint">
+            <h2><span class="method get">GET</span> Obtener todos los libros</h2>
+            <div class="url">http://localhost:8081/api/books</div>
+            <div class="description">
+                <p>Obtiene la lista completa de libros disponibles en el catálogo.</p>
+            </div>
+            <h3>Respuesta de ejemplo:</h3>
+            <div class="response">
+                [
+                    {
+                        "id": 1,
+                        "title": "El Quijote",
+                        "author": "Miguel de Cervantes",
+                        "isbn": "978-8497593798",
+                        "price": 19.99,
+                        "stock": 50
+                    },
+                    {
+                        "id": 2,
+                        "title": "Cien años de soledad",
+                        "author": "Gabriel García Márquez",
+                        "isbn": "978-8497592208",
+                        "price": 15.99,
+                        "stock": 30
+                    }
+                ]
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2><span class="method get">GET</span> Obtener libro por ID</h2>
+            <div class="url">http://localhost:8081/api/books/{id}</div>
+            <div class="description">
+                <p>Obtiene la información detallada de un libro específico por su ID.</p>
+            </div>
+            <h3>Respuesta de ejemplo:</h3>
+            <div class="response">
+                {
+                    "id": 1,
+                    "title": "El Quijote",
+                    "author": "Miguel de Cervantes",
+                    "isbn": "978-8497593798",
+                    "price": 19.99,
+                    "stock": 50,
+                    "description": "La obra maestra de la literatura española",
+                    "category": "Novela",
+                    "publicationDate": "1605-01-01"
+                }
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2><span class="method post">POST</span> Crear nuevo libro</h2>
+            <div class="url">http://localhost:8081/api/books</div>
+            <div class="description">
+                <p>Crea un nuevo libro en el catálogo.</p>
+            </div>
+            <h3>Cuerpo de la petición:</h3>
+            <div class="request-body">
+                {
+                    "title": "Nuevo Libro",
+                    "author": "Autor Ejemplo",
+                    "isbn": "978-1234567890",
+                    "price": 24.99,
+                    "stock": 100,
+                    "description": "Descripción del nuevo libro",
+                    "category": "Ficción",
+                    "publicationDate": "2024-01-01"
+                }
+            </div>
+            <h3>Respuesta de ejemplo:</h3>
+            <div class="response">
+                {
+                    "id": 3,
+                    "title": "Nuevo Libro",
+                    "author": "Autor Ejemplo",
+                    "isbn": "978-1234567890",
+                    "price": 24.99,
+                    "stock": 100,
+                    "description": "Descripción del nuevo libro",
+                    "category": "Ficción",
+                    "publicationDate": "2024-01-01"
+                }
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2><span class="method put">PUT</span> Actualizar libro</h2>
+            <div class="url">http://localhost:8081/api/books/{id}</div>
+            <div class="description">
+                <p>Actualiza la información de un libro existente.</p>
+            </div>
+            <h3>Cuerpo de la petición:</h3>
+            <div class="request-body">
+                {
+                    "title": "Libro Actualizado",
+                    "author": "Autor Actualizado",
+                    "price": 29.99,
+                    "stock": 75,
+                    "description": "Nueva descripción del libro"
+                }
+            </div>
+            <h3>Respuesta de ejemplo:</h3>
+            <div class="response">
+                {
+                    "id": 1,
+                    "title": "Libro Actualizado",
+                    "author": "Autor Actualizado",
+                    "isbn": "978-8497593798",
+                    "price": 29.99,
+                    "stock": 75,
+                    "description": "Nueva descripción del libro",
+                    "category": "Novela",
+                    "publicationDate": "1605-01-01"
+                }
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2><span class="method delete">DELETE</span> Eliminar libro</h2>
+            <div class="url">http://localhost:8081/api/books/{id}</div>
+            <div class="description">
+                <p>Elimina un libro del catálogo por su ID.</p>
+            </div>
+            <h3>Respuesta de ejemplo:</h3>
+            <div class="response">
+                {
+                    "message": "Libro eliminado exitosamente",
+                    "id": 1
+                }
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2><span class="method get">GET</span> Buscar libros por título</h2>
+            <div class="url">http://localhost:8081/api/books/search?title={título}</div>
+            <div class="description">
+                <p>Busca libros por título (búsqueda parcial).</p>
+            </div>
+            <h3>Respuesta de ejemplo:</h3>
+            <div class="response">
+                [
+                    {
+                        "id": 1,
+                        "title": "El Quijote",
+                        "author": "Miguel de Cervantes",
+                        "isbn": "978-8497593798",
+                        "price": 19.99,
+                        "stock": 50
+                    }
+                ]
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2><span class="method get">GET</span> Obtener libros por categoría</h2>
+            <div class="url">http://localhost:8081/api/books/category/{categoría}</div>
+            <div class="description">
+                <p>Obtiene todos los libros de una categoría específica.</p>
+            </div>
+            <h3>Respuesta de ejemplo:</h3>
+            <div class="response">
+                [
+                    {
+                        "id": 1,
+                        "title": "El Quijote",
+                        "author": "Miguel de Cervantes",
+                        "isbn": "978-8497593798",
+                        "price": 19.99,
+                        "stock": 50,
+                        "category": "Novela"
+                    }
+                ]
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
